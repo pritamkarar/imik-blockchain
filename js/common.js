@@ -87,6 +87,22 @@ function myFunction() {
     }
 }
 
+function myFunctionright() {
+    var dots = document.getElementById("rightdots");
+    var moreText = document.getElementById("rightmore");
+    var btnText = document.getElementById("rightBtn");
+  
+    if (dots.style.display === "none") {
+      dots.style.display = "inline";
+      btnText.innerHTML = "Read more +"; 
+      moreText.style.display = "none";
+    } else {
+      dots.style.display = "none";
+      btnText.innerHTML = "Read less -"; 
+      moreText.style.display = "block";
+    }
+}
+
 $("#get-started,#formEnroll").click(function () {
     $('html, body').animate({
         scrollTop: $("#dvForm").offset().top - 120
