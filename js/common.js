@@ -329,7 +329,6 @@ $(document).ready(function () {
                     if(data=="success")
                     {
                        $('#imiForm').submit();
-                      // window.location.href = "razorpayment.php"; // Redirect
                     }else{
                         $("#emailwrong").removeClass('d-none');
                         $("#mobwrong").removeClass('d-none');
