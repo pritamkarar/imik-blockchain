@@ -312,7 +312,7 @@ small {
   background: orangered;
 }
 .calender-icon2 {
-  background: greenyellow;
+  background: rgb(0, 175, 9);
 }
 .calender-icon3 {
   background: skyblue;
@@ -828,7 +828,8 @@ button:focus:not(:focus-visible) {
 }
 @media screen and (max-width: 992px) {
   .orange-border img {
-    margin-bottom: 0 0 20px;
+    height: auto;
+    margin-bottom:20px;
   }
   .title {
     font-size: 2.575rem;
@@ -1390,4 +1391,8 @@ li {
 .key-features i {
   color: #ff6319;
   margin-right: 8px;
+}
+
+.accordion-body p{
+    margin: 5px 0 5px 0;
 }
