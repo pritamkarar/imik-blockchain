@@ -294,6 +294,33 @@ small {
     font-size: 1.125rem;
     line-height: 22px;
 }
+
+.icon-container-calender{
+    border-radius: 10%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 104px;
+    height: 104px;
+    color: #fff;
+    font-size: 1.5rem;
+  }
+
+  .calender-icon1{
+    background: orangered;
+  }
+  .calender-icon2{
+    background:greenyellow;
+  }
+  .calender-icon3{
+    background: skyblue;
+  }
+
+  .icon-container-calender img{
+    width: 60px;
+    height: 60px;
+    margin-bottom: 5px;
+  }
 button,
 input,
 select {
@@ -859,6 +886,23 @@ button:focus:not(:focus-visible) {
         display: none;
     }
 }
+@media (max-width: 768px) {
+    .calendar p {
+        font-size: 10px;
+    }
+    .icon-container-calender img{
+        width: 40px;
+        height: 40px;
+      }
+
+      .icon-container-calender{
+        width: 70px;
+        height: 70px;
+      }
+    .card:nth-last-child(1)::before {
+        bottom: 270px !important;
+    }
+}
 @media (max-width: 767.98px) {
     .berger_model {
         display: none;
@@ -892,6 +936,12 @@ button:focus:not(:focus-visible) {
     }
 }
 @media (max-width: 575.98px) {
+    .icon-container-calender{
+        margin-right: 10px;
+    }
+    .calendar p {
+         font-size: 1rem; 
+    }
     .form-mobile-top-height {
         padding-top: 17rem;
     }
@@ -1099,11 +1149,6 @@ button:focus:not(:focus-visible) {
 @media (max-width: 991px) {
     .card:nth-last-child(1)::before {
         bottom: 275px !important;
-    }
-}
-@media (max-width: 768px) {
-    .card:nth-last-child(1)::before {
-        bottom: 270px !important;
     }
 }
 @media (max-width: 325px) {
