@@ -312,7 +312,7 @@ small {
   background: orangered;
 }
 .calender-icon2 {
-  background: greenyellow;
+  background: rgb(0, 175, 9);
 }
 .calender-icon3 {
   background: skyblue;
@@ -1390,4 +1390,8 @@ li {
 .key-features i {
   color: #ff6319;
   margin-right: 8px;
+}
+
+.accordion-body p{
+    margin: 5px 0 5px 0;
 }
