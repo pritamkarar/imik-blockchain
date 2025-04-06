@@ -1317,3 +1317,23 @@ li {
     margin-top: 20px;
     color: #222;
 }
+
+.tools-section img {
+    max-height: 50px;
+  margin: 10px;
+  max-width: 150px;
+  object-fit: contain;
+  }
+  .tools-title {
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #271f5c;
+    text-transform: uppercase;
+  }
+  .key-features li {
+    margin-bottom: 10px;
+  }
+  .key-features i {
+    color: #ff6319;
+    margin-right: 8px;
+  }
