@@ -98,7 +98,7 @@ function myFunctionright() {
   }
 }
 
-$("#get-started,#formEnroll").click(function () {
+$("#get-started,#formEnroll,#headerEnroll").click(function () {
   $("html, body").animate(
     {
       scrollTop: $("#dvForm").offset().top - 120,
