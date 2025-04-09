@@ -39,9 +39,8 @@ $('.faculty-carousel').owlCarousel({
     margin:30,
     nav:false,
     autoplay:true,
-    autoplayTimeout:2000,
+    autoplayTimeout:3000,
     autoplayHoverPause:true,
-    dots:false,
     responsive:{
         0:{ items:1 },
         600:{ items:2 },

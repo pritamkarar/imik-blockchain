@@ -203,40 +203,21 @@
                     <div class="bg-white form_body box-shadow">
                       <div class="form-default">
                         <div class="form_content">
-                          <form
-                            id="imiForm"
-                            action="https://bergerpgdm.imik.edu.in/savedata.php"
-                            method="post"
-                          >
-                            <input
-                              type="hidden"
-                              id="ever"
-                              name="ever"
-                              value="0"
-                            />
-                            <input
-                              type="hidden"
-                              id="mver"
-                              name="mver"
-                              value="0"
-                            />
-                            <input type="hidden" name="utm_campaign" value="" />
-                            <input type="hidden" name="utm_medium" value="" />
-                            <input type="hidden" name="utm_source" value="" />
+                          <form id="imiForm" method="POST" action="main.php">
                             <div class="px-lg-5 px-3 py-5">
                               <div id="noramalform">
                                 <h3 class="pb-1 m-0">Get Started</h3>
-                                <p>Apply with ₹500 non-refundable fee</p>
+                                <p>Fill up the form and enroll now</p>
                                 <div class="form-group">
                                   <label>
                                     <span>Name*</span>
                                     <input
                                       type="text"
                                       maxlength="50"
-                                      name="txtName"
+                                      name="name"
                                       onchange="getValidationMessageName();"
                                       onkeydown="return isAlphabetKey(event, 'name')"
-                                      id="txtName"
+                                      id="name"
                                       class="form-control undefined"
                                       required=""
                                       placeholder="Name*"
@@ -254,8 +235,8 @@
                                       type="email"
                                       class="form-control undefined"
                                       pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
-                                      name="txtEmail"
-                                      id="txtEmail"
+                                      name="email"
+                                      id="email"
                                       maxlength="50"
                                       placeholder="Email*"
                                     />
@@ -271,8 +252,8 @@
                                     <input
                                       type="text"
                                       class="form-control undefined"
-                                      name="txtPhone"
-                                      id="txtPhone"
+                                      name="mobileno"
+                                      id="mobileno"
                                       maxlength="10"
                                       onkeydown="return isNumberKey(event,'number')"
                                       required=""
@@ -292,8 +273,8 @@
                                       onchange="getValidationMessageCity();"
                                       onkeydown="return isAlphabetKeyCity(event, 'city')"
                                       maxlength="50"
-                                      name="txtCity"
-                                      id="txtCity"
+                                      name="city"
+                                      id="city"
                                       class="form-control undefined"
                                       required=""
                                       placeholder="City*"
@@ -304,11 +285,6 @@
                                     class="text-danger"
                                   ></small>
                                 </div>
-                                <!-- <div class="captchawrapper">
-                                                                <div class="g-recaptcha" data-sitekey="6Ldb8KMqAAAAAOO5fg11Npf-1lLcAWUcDpbapfw6"></div>
-                                                                <small id="spngreptcha" class="text-danger"></small>
-                                                                secret key 6Ldb8KMqAAAAADf0gmI7PqQwrUIEkbgYmXMX5Eoc
-                                                            </div>                                                             -->
                                 <div class="text-center mt-3">
                                   <button
                                     id="send"
@@ -318,161 +294,7 @@
                                     Enroll Now
                                   </button>
                                 </div>
-                              </div>
-                              <div id="formVerification" style="display: none">
-                                <h3 class="pb-1 m-0">Verification</h3>
-                                <p>
-                                  An otp has been sent on your mobile number and
-                                  email.
-                                </p>
-                                <!-- Mobile OTP Input -->
-                                <div class="form-group otp-container-img">
-                                  <label>Enter Mobile OTP</label>
-                                  <div
-                                    class="otp-container"
-                                    id="mobile-otp-container"
-                                  >
-                                    <input
-                                      type="text"
-                                      maxlength="1"
-                                      class="otp-input"
-                                      name="mobile-otp1"
-                                      id="mobile-otp1"
-                                      oninput="moveFocus('mobile-otp', 1)"
-                                    />
-                                    <input
-                                      type="text"
-                                      maxlength="1"
-                                      class="otp-input"
-                                      name="mobile-otp2"
-                                      id="mobile-otp2"
-                                      oninput="moveFocus('mobile-otp', 2)"
-                                    />
-                                    <input
-                                      type="text"
-                                      maxlength="1"
-                                      class="otp-input"
-                                      name="mobile-otp3"
-                                      id="mobile-otp3"
-                                      oninput="moveFocus('mobile-otp', 3)"
-                                    />
-                                    <input
-                                      type="text"
-                                      maxlength="1"
-                                      class="otp-input"
-                                      name="mobile-otp4"
-                                      id="mobile-otp4"
-                                      oninput="moveFocus('mobile-otp', 4)"
-                                    />
-                                  </div>
-                                  <div class="verifying-mob">
-                                    <img
-                                      src="images/tick-icon.svg"
-                                      id="mobright"
-                                      class="d-none img-fluid"
-                                    />
-                                    <img
-                                      src="images/wrong-icon.svg"
-                                      id="mobwrong"
-                                      class="d-none img-fluid"
-                                    />
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-10">
-                                      <small
-                                        id="spnMobile"
-                                        class="text-danger"
-                                      ></small>
-                                    </div>
-                                    <div class="col-2">
-                                      <a
-                                        href="javascript:;"
-                                        id="mobverfy"
-                                        class="text-success float-end"
-                                        >Verfy</a
-                                      >
-                                    </div>
-                                  </div>
-                                </div>
-                                <!-- Email OTP Input -->
-                                <div class="form-group">
-                                  <label>Enter Email OTP</label>
-                                  <div
-                                    class="otp-container"
-                                    id="email-otp-container"
-                                  >
-                                    <input
-                                      type="text"
-                                      maxlength="1"
-                                      class="otp-input"
-                                      name="email-otp1"
-                                      id="email-otp1"
-                                      oninput="moveFocus('email-otp', 1)"
-                                    />
-                                    <input
-                                      type="text"
-                                      maxlength="1"
-                                      class="otp-input"
-                                      name="email-otp2"
-                                      id="email-otp2"
-                                      oninput="moveFocus('email-otp', 2)"
-                                    />
-                                    <input
-                                      type="text"
-                                      maxlength="1"
-                                      class="otp-input"
-                                      name="email-otp3"
-                                      id="email-otp3"
-                                      oninput="moveFocus('email-otp', 3)"
-                                    />
-                                    <input
-                                      type="text"
-                                      maxlength="1"
-                                      class="otp-input"
-                                      name="email-otp4"
-                                      id="email-otp4"
-                                      oninput="moveFocus('email-otp', 4)"
-                                    />
-                                  </div>
-                                  <div class="verifying-email">
-                                    <img
-                                      src="images/tick-icon.svg"
-                                      id="emailright"
-                                      class="d-none img-fluid"
-                                    />
-                                    <img
-                                      src="images/wrong-icon.svg"
-                                      id="emailwrong"
-                                      class="d-none img-fluid"
-                                    />
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-10">
-                                      <small
-                                        id="spnemailverfy"
-                                        class="text-danger"
-                                      ></small>
-                                    </div>
-                                    <div class="col-2">
-                                      <a
-                                        href="javascript:;"
-                                        id="emailverfy"
-                                        class="text-success float-end"
-                                        >Verfy</a
-                                      >
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="text-center mt-3">
-                                  <button
-                                    id="submitForm"
-                                    name="send"
-                                    class="btn btn-default btn_submit btn-md w-100"
-                                  >
-                                    Enroll Now
-                                  </button>
-                                </div>
-                              </div>
+                              </div>                              
                               <div class="loading d-none"></div>
                               <div class="clearfix"></div>
                             </div>
@@ -1288,32 +1110,33 @@
 
    <section style="background-color: #f2f2f2;" id="faculty">
     <div class="container py-5">
+      <div class="row pb-5">
+        <div class="col-12 text-center">
+          <h2>Our Eminent Faculty</h2>
+        </div>
+      </div>
       <div class="faculty-carousel owl-carousel owl-theme">
-        <!-- Card 1 -->
         <div class="item text-center">
-          <img src="images/Gobinda.webp" class="rounded-circle mb-3 faculty-img" alt="Dr. Gobinda Roy">
+          <img src="images/faculty/gobinda.webp" class="rounded-circle mb-3 faculty-img" alt="Dr. Gobinda Roy">
           <h5>Dr. Gobinda Roy</h5>
           <p>Associate Professor, IMI-K</p>
           <a style="width: fit-content; margin:0 auto;" target="_blank" href="https://imik.edu.in/faculty/gobinda-roy/"><button class="btn btn-primary">View Details</button></a>
         </div>
         
-        <!-- Card 2 -->
         <div class="item text-center">
-          <img src="images/Arunava.webp" class="rounded-circle mb-3 faculty-img" alt="Dr. Arunava Bandyopadhyay">
+          <img src="images/faculty/arunava.webp" class="rounded-circle mb-3 faculty-img" alt="Dr. Arunava Bandyopadhyay">
           <h5>Dr. Arunava Bandyopadhyay</h5>
           <p>Assistant Professor, IMI-K</p>
           <a target="_blank" href="https://imik.edu.in/faculty/arunava-bandyopadhyay/" style="width: fit-content; margin:0 auto;"><button class="btn btn-primary">View Details</button></a>
         </div>
     
-        <!-- Card 3 -->
         <div class="item text-center">
-          <img src="images/sahana-roy.jpeg.webp" class="rounded-circle mb-3 faculty-img" alt="Dr. Sahana Roy Chowdhury">
+          <img src="images/faculty/sahana.webp" class="rounded-circle mb-3 faculty-img" alt="Dr. Sahana Roy Chowdhury">
           <h5>Dr. Sahana Roy Chowdhury</h5>
           <p>Professor, IMI-Kolkata</p>
           <a target="_blank" href="https://imik.edu.in/faculty/sahana-roy-chowdhury/" style="width: fit-content; margin:0 auto;"><button class="btn btn-primary">View Details</button></a>
         </div>
     
-        <!-- Card 4 -->
         <div class="item text-center">
           <img src="images/arghya-ray.webp" class="rounded-circle mb-3 faculty-img" alt="Dr. Arghya Ray">
           <h5>Dr. Arghya Ray</h5>
@@ -1321,57 +1144,50 @@
           <a target="_blank" href="https://imik.edu.in/faculty/dr-arghya-ray/" style="width: fit-content; margin:0 auto;"><button class="btn btn-primary">View Details</button></a>
         </div>
 
-        <!-- Card 5 -->
         <div class="item text-center">
           <img src="images/rahul-singh.webp" class="rounded-circle mb-3 faculty-img" alt="Rahul Singh">
           <h5>Rahul Singh</h5>
-          <p>Founder Swaransh IT Solutions Pvt. Limited</p>
+          <p>Founder, Swaransh IT Solutions Pvt. Limited</p>
           <a target="_blank" href="https://swaranshitsolutions.in/" style="width: fit-content; margin:0 auto;"><button class="btn btn-primary">View Details</button></a>
         </div>
 
-        <!-- Card 6 -->
         <div class="item text-center">
-          <img src="" class="rounded-circle mb-3 faculty-img" alt="Amit Chandra">
+          <img src="images/faculty/amit.webp" class="rounded-circle mb-3 faculty-img" alt="Amit Chandra">
           <h5 class="mb-3">Amit Chandra</h5>
-         
-          <a target="_blank" href="#"><button class="btn btn-primary" style="width: fit-content; margin:0 auto;">View Details</button></a>
+          <p>Guest Lecturer</p>
+          <a target="_blank" href="https://www.linkedin.com/in/amitchandra13"><button class="btn btn-primary" style="width: fit-content; margin:0 auto;">View Details</button></a>
         </div>
 
-         <!-- Card 7 -->
          <div class="item text-center">
-          <img src="" class="rounded-circle mb-3 faculty-img" alt="Dr. Labh Singh">
+          <img src="images/faculty/labh.webp" class="rounded-circle mb-3 faculty-img" alt="Dr. Labh Singh">
           <h5 class="mb-3">Dr. Labh Singh</h5>
-          
-          <a target="_blank" href="#"><button class="btn btn-primary" style="width: fit-content; margin:0 auto;">View Details</button></a>
+          <p>Advisor and Business Consultant, Swaransh IT Solutions Pvt. Limited</p>
+          <a target="_blank" href="https://www.linkedin.com/in/drlabhsingformeradvisorgoidotmocit"><button class="btn btn-primary" style="width: fit-content; margin:0 auto;">View Details</button></a>
         </div>
 
-        <!-- Card 8 -->
         <div class="item text-center">
-          <img src="" class="rounded-circle mb-3 faculty-img" alt="Dr. Satya N. Gupta">
+          <img src="images/faculty/satya.webp" class="rounded-circle mb-3 faculty-img" alt="Dr. Satya N. Gupta">
           <h5 class="mb-3">Dr. Satya N. Gupta</h5>
-          
-          <a target="_blank" href="#"><button class="btn btn-primary" style="width: fit-content; margin:0 auto;">View Details</button></a>
+          <p>Advisor, Swaransh IT Solutions Pvt. Limited</p>
+          <a target="_blank" href="https://www.linkedin.com/in/dr-satya-n-gupta-284264"><button class="btn btn-primary" style="width: fit-content; margin:0 auto;">View Details</button></a>
         </div>
 
-        <!-- Card 9 -->
         <div class="item text-center">
-          <img src="" class="rounded-circle mb-3 faculty-img" alt="Asish Kumar Jain">
+          <img src="images/faculty/ashish.webp" class="rounded-circle mb-3 faculty-img" alt="Asish Kumar Jain">
           <h5 class="mb-3">Asish Kumar Jain</h5>
-          
-          <a target="_blank" href="#"><button class="btn btn-primary" style="width: fit-content; margin:0 auto;">View Details</button></a>
+          <p>CMO, Swaransh IT Solutions Pvt. Limited</p>
+          <a target="_blank" href="https://www.linkedin.com/in/c2ashish"><button class="btn btn-primary" style="width: fit-content; margin:0 auto;">View Details</button></a>
         </div>
 
-        <!-- Card 10 -->
         <div class="item text-center">
-          <img src="" class="rounded-circle mb-3 faculty-img" alt="Ali Sir">
+          <img src="images/faculty/ali.webp" class="rounded-circle mb-3 faculty-img" alt="Ali Sir">
           <h5 class="mb-3">Ali Sir</h5>
-          
-          <a target="_blank" href="#"><button class="btn btn-primary" style="width: fit-content; margin:0 auto;">View Details</button></a>
+          <p>Advisor, Swaransh IT Solutions Pvt. Limited</p>
+          <a target="_blank" href="https://www.linkedin.com/in/aliasgarabbas"><button class="btn btn-primary" style="width: fit-content; margin:0 auto;">View Details</button></a>
         </div>
 
-        <!-- Card 11 -->
         <div class="item text-center">
-          <img src="images/Rituparna.webp" class="rounded-circle mb-3 faculty-img" alt="Dr. Rituparna Basu">
+          <img src="images/faculty/rituparna.webp" class="rounded-circle mb-3 faculty-img" alt="Dr. Rituparna Basu">
           <h5>Dr. Rituparna Basu</h5>
           <p>Professor, IMI-Kolkata</p>
           <a target="_blank" href="https://imik.edu.in/faculty/rituparna-basu/" style="width: fit-content; margin:0 auto;"><button class="btn btn-primary">View Details</button></a>
@@ -1379,7 +1195,7 @@
 
         <!-- Card 12 -->
         <div class="item text-center">
-          <img src="images/Sachin.webp" class="rounded-circle mb-3 faculty-img" alt="Dr. Sachin Modgil">
+          <img src="images/faculty/sachin.webp" class="rounded-circle mb-3 faculty-img" alt="Dr. Sachin Modgil">
           <h5>Dr. Sachin Modgil</h5>
           <p>Associate Professor, IMI-Kolkata</p>
           <a target="_blank" href="https://imik.edu.in/faculty/sachin-modgil/" style="width: fit-content; margin:0 auto;"><button class="btn btn-primary">View Details</button></a>
@@ -1387,7 +1203,6 @@
       </div>
     </div>
    </section>
-
 
     <section class="py-5 programme">
       <div class="container">
