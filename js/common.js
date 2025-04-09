@@ -105,6 +105,7 @@ $("#get-started,#formEnroll").click(function () {
     },
     800
   );
+  $("#txtName").focus();
 });
 
 function moveFocus(type, current) {
@@ -183,33 +184,6 @@ function isInteger(e) {
   }
   return !0;
 }
-
-/*$(document).ready(function () {
-    $('#send').click(function (e) {
-
-        e.preventDefault();
-
-        var result = validateExp();
-        if (result) {
-            var resultData = $('#guldForm').serialize();
-            $.ajax({
-                cache: false,
-                type: "POST",
-                url: "savedata.php",
-                data: resultData,
-                success: function (data) {  
-                    $('#guldForm')[0].reset();
-                    window.location.href = "thank-you.html";
-                    // $("#formdata").hide();
-                    // $("#thankmessage").removeClass("d-none");
-
-                }
-            }); 
-        }
-
-       
-    });
-});*/
 
 $(document).ready(function () {
   $("#send").click(function (e) {
@@ -515,18 +489,6 @@ function validateotp() {
 function validateExp() {
   var IsValid = true;
 
-  // var recaptchaResponse = grecaptcha.getResponse();
-
-  // // Check if reCAPTCHA is checked
-  // if (recaptchaResponse.length === 0) {
-  //     // If reCAPTCHA is not checked, prevent form submission
-  //     $('#spngreptcha').text('Please complete the reCAPTCHA')
-  //     IsValid = false;
-  // }
-  // else {
-  //     $('#spngreptcha').text('')
-  // }
-
   var name = document.getElementById("txtName").value;
   if (name.trim() == "" || name.trim() == "Please enter your name") {
     $("#spnName").text("Please enter your name");
@@ -577,17 +539,6 @@ function validateExp() {
     $("#spnMobileNumber").text("");
   }
 
-  // var email = document.getElementById("txtEmail").value;
-  //  if(email!=""){
-  //     if (ValidateEmail(email.trim()) == false) {
-  //             $('#spnEmail').text('Please enter valid email address');
-  //             IsValid = false;
-  //         }
-  //         else {
-  //             $('#spnEmail').text('');
-  //     }
-  // }
-
   var email = document.getElementById("txtEmail").value;
   if (email.trim() == "" || email.trim() == "Email Address") {
     $("#spnEmail").text("Please enter your email address");
@@ -617,16 +568,6 @@ function validateExp() {
   } else {
     $("#spnCity").text("");
   }
-
-  // var address = document.getElementById("txtAddress").value;
-  // if (address.trim() !== "") {
-  //     if (!ValidateAddress(address.trim())) {
-  //         $('#spnAddress').text('Please enter a valid address');
-  //         IsValid = false;
-  //     } else {
-  //         $('#spnAddress').text('');
-  //     }
-  // }
 
   if (IsValid) {
     return true;
