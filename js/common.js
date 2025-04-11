@@ -16,24 +16,6 @@ $(".key-highlights-carousel").owlCarousel({
     },
   },
 });
-$(".aplication-steps-carousel").owlCarousel({
-  loop: true,
-  margin: 15,
-  nav: false,
-  autoplay: true,
-  autoplayHoverPause: true,
-  responsive: {
-    0: {
-      items: 1,
-    },
-    600: {
-      items: 1,
-    },
-    1000: {
-      items: 2,
-    },
-  },
-});
 $(".faculty-carousel").owlCarousel({
   loop: true,
   margin: 30,
@@ -47,56 +29,17 @@ $(".faculty-carousel").owlCarousel({
     1000: { items: 3 },
   },
 });
-$(".learning-approach-carousel").owlCarousel({
-  loop: true,
-  margin: 15,
-  nav: false,
-  autoplay: true,
-  autoplayHoverPause: true,
-  responsive: {
-    0: {
-      items: 1,
-    },
-    600: {
-      items: 2,
-    },
-    1000: {
-      items: 2,
-    },
-  },
+
+$(".read-more-button").click(function () {
+  var $this = $(this);
+  if ($this.hasClass("active")) {
+    $this.prev(".read-more-content").slideUp();
+    $this.removeClass("active").text("Read more +");
+  } else {
+    $this.prev(".read-more-content").slideDown();
+    $this.addClass("active").text("Read less -");
+  }
 });
-
-function myFunction() {
-  var dots = document.getElementById("dots");
-  var moreText = document.getElementById("more");
-  var btnText = document.getElementById("myBtn");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = "Read more +";
-    moreText.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "Read less -";
-    moreText.style.display = "block";
-  }
-}
-
-function myFunctionright() {
-  var dots = document.getElementById("rightdots");
-  var moreText = document.getElementById("rightmore");
-  var btnText = document.getElementById("rightBtn");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = "Read more +";
-    moreText.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "Read less -";
-    moreText.style.display = "block";
-  }
-}
 
 $("#get-started,#formEnroll,#headerEnroll").click(function () {
   $("html, body").animate(
