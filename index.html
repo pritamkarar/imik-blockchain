@@ -225,7 +225,7 @@
                     <div class="bg-white form_body box-shadow">
                       <div class="form-default">
                         <div class="form_content">
-                          <form id="imiForm" method="POST" action="main.php">
+                          <form id="imiForm" method="POST" action="">
                             <div class="px-lg-5 px-3 py-5">
                               <div id="noramalform">
                                 <h3 class="pb-1 m-0">Get Started</h3>
@@ -309,8 +309,8 @@
                                 </div>
                                 <div class="text-center mt-3">
                                   <button
-                                    id="send"
-                                    name="send"
+                                    id="submitForm"
+                                    name="submitForm"
                                     class="btn btn-default btn_submit btn-md w-100"
                                   >
                                     Enroll Now
@@ -2435,6 +2435,8 @@
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <script type="text/javascript" src="js/owl.carousel.min.js"></script>
     <script type="text/javascript" src="js/jquery.fancybox.min.js"></script>
     <script type="text/javascript" src="js/lazysizes.min.js"></script>
@@ -2442,17 +2444,5 @@
     <script type="text/javascript" src="js/custom.js"></script>
     <script type="text/javascript" src="js/jquery.countup.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
-
-    <script>
-      $(".counter").countUp();
-    </script>
-    <script>
-      const myModal = document.getElementById("myModal");
-      const myInput = document.getElementById("myInput");
-
-      myModal.addEventListener("shown.bs.modal", () => {
-        myInput.focus();
-      });
-    </script>
   </body>
 </html>

@@ -19,7 +19,7 @@ loadEnv(); // Load the environment variables
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-function sendMailSMTP($toEmail, $subject, $htmlBody, $plainTextBody = '') {
+function sendMailSMTP($subject, $htmlBody, $plainTextBody = '') {
   $mail = new PHPMailer(true);
 
   try {
@@ -73,9 +73,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Send email
     if (sendMailSMTP($subject, $message)) {
-        echo "Thank you! Your information has been sent.";
+        echo "Success";
     } else {
-        echo "Oops! Something went wrong.";
+        http_response_code(500);
+        echo "Failed";
     }
 }
 ?>

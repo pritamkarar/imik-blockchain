@@ -1,54 +1,96 @@
-$(".key-highlights-carousel").owlCarousel({
-  loop: true,
-  margin: 15,
-  nav: false,
-  autoplay: true,
-  autoplayHoverPause: true,
-  responsive: {
-    0: {
-      items: 1,
-    },
-    600: {
-      items: 1,
-    },
-    1000: {
-      items: 5,
-    },
-  },
-});
-$(".faculty-carousel").owlCarousel({
-  loop: true,
-  margin: 30,
-  nav: false,
-  autoplay: true,
-  autoplayTimeout: 3000,
-  autoplayHoverPause: true,
-  responsive: {
-    0: { items: 1 },
-    600: { items: 2 },
-    1000: { items: 3 },
-  },
-});
 
-$(".read-more-button").click(function () {
-  var $this = $(this);
-  if ($this.hasClass("active")) {
-    $this.prev(".read-more-content").slideUp();
-    $this.removeClass("active").text("Read more +");
-  } else {
-    $this.prev(".read-more-content").slideDown();
-    $this.addClass("active").text("Read less -");
-  }
-});
-
-$("#get-started,#formEnroll,#headerEnroll").click(function () {
-  $("html, body").animate(
-    {
-      scrollTop: $("#dvForm").offset().top - 120,
+$(document).ready(function () {
+  $(".counter").countUp();
+  
+  $(".key-highlights-carousel").owlCarousel({
+    loop: true,
+    margin: 15,
+    nav: false,
+    autoplay: true,
+    autoplayHoverPause: true,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      600: {
+        items: 1,
+      },
+      1000: {
+        items: 5,
+      },
     },
-    800
-  );
-  $("#txtName").focus();
+  });
+  
+  $(".faculty-carousel").owlCarousel({
+    loop: true,
+    margin: 30,
+    nav: false,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: true,
+    responsive: {
+      0: { items: 1 },
+      600: { items: 2 },
+      1000: { items: 3 },
+    },
+  });
+  
+  $(".read-more-button").click(function () {
+    var $this = $(this);
+    if ($this.hasClass("active")) {
+      $this.prev(".read-more-content").slideUp();
+      $this.removeClass("active").text("Read more +");
+    } else {
+      $this.prev(".read-more-content").slideDown();
+      $this.addClass("active").text("Read less -");
+    }
+  });
+  
+  $("#get-started,#formEnroll,#headerEnroll").click(function () {
+    $("html, body").animate(
+      {
+        scrollTop: $("#dvForm").offset().top - 120,
+      },
+      800
+    );
+    $("#txtName").focus();
+  });
+  
+  $("#submitForm").click(function (e) {
+    e.preventDefault();
+    var isValid = validateExp();
+    var formParameters = $("#imiForm").serialize();
+
+    if (isValid) {
+      $("#submitForm").attr("disabled", true);
+      $.ajax({
+        cache: false,
+        type: "POST",
+        url: "main.php",
+        data: formParameters,
+        success: function (response) {
+          Swal.fire({
+            title: "Enrollment request received!",
+            text: "We have received your request. Our team will get back to you soon.",
+            icon: "success",
+            showConfirmButton: false,
+            showCloseButton: true
+          });
+          $("#submitForm").attr("disabled", false);
+        },
+        error: function () {
+          Swal.fire({
+            title: "Error occurred!",
+            text: "An error occurred while processing your request. Please try again.",
+            icon: "error",
+            showConfirmButton: false,
+            showCloseButton: true
+          });
+          $("#submitForm").attr("disabled", false);
+        },
+      });
+    }
+  });
 });
 
 function moveFocus(type, current) {
@@ -127,137 +169,6 @@ function isInteger(e) {
   }
   return !0;
 }
-
-$(document).ready(function () {
-  $("#send").click(function (e) {
-    e.preventDefault();
-
-    // Validate current form fields
-    var result = validateExp();
-    var resultData = $("#imiForm").serialize();
-    if (result) {
-      $("#send").attr("disabled", true);
-      $.ajax({
-        cache: false,
-        type: "POST",
-        url: "sendotp.php",
-        data: resultData,
-        success: function (data) {
-          // Move to the next step
-          $("#noramalform").hide(); // Hide the current step
-          $("#formVerification").show(); // Show the next step
-        },
-        error: function (xhr, status, error) {
-          //alert("An error occurred. Please try again.");
-        },
-      });
-    }
-  });
-
-  $("#mobverfy").click(function (e) {
-    // Serialize form data
-    e.preventDefault();
-    var resultData = $("#imiForm").serialize();
-    var result = validateotpMobile();
-    $("#spnMobile").text("");
-    if (result) {
-      $.ajax({
-        cache: false,
-        type: "POST",
-        url: "validateotpmobile.php",
-        data: resultData,
-        success: function (data) {
-          // Move to the next step
-          if (data == "success") {
-            //$('#imiForm').submit();
-            $("#mobright").removeClass("d-none");
-            $("#mobwrong").addClass("d-none");
-            $("#mver").val("1");
-          } else {
-            $("#mobile-otp1").val("");
-            $("#mobile-otp2").val("");
-            $("#mobile-otp3").val("");
-            $("#mobile-otp4").val("");
-            $("#mobwrong").removeClass("d-none");
-            $("#mobright").addClass("d-none");
-            // $('#spnMobile').text('Please enter valid otp for mobile');
-            $("#mver").val("0");
-          }
-        },
-        error: function (xhr, status, error) {
-          // alert("An error occurred. Please try again.");
-        },
-      });
-    }
-  });
-
-  $("#emailverfy").click(function (e) {
-    // Serialize form data
-    e.preventDefault();
-    var resultData = $("#imiForm").serialize();
-    var result = validateotpEmail();
-    $("#spnemailverfy").text("");
-    if (result) {
-      $.ajax({
-        cache: false,
-        type: "POST",
-        url: "validateotpemail.php",
-        data: resultData,
-        success: function (data) {
-          // Move to the next step
-          if (data == "success") {
-            //$('#imiForm').submit();
-            $("#emailright").removeClass("d-none");
-            $("#emailwrong").addClass("d-none");
-            $("#ever").val("1");
-          } else {
-            $("#email-otp1").val("");
-            $("#email-otp2").val("");
-            $("#email-otp3").val("");
-            $("#email-otp4").val("");
-            $("#emailwrong").removeClass("d-none");
-            $("#emailright").addClass("d-none");
-            //$('#spnemail').text('Please enter valid otp for email');
-            $("#ever").val("0");
-          }
-        },
-        error: function (xhr, status, error) {
-          // alert("An error occurred. Please try again.");
-        },
-      });
-    }
-  });
-
-  $("#submitForm").click(function (e) {
-    // Serialize form data
-    e.preventDefault();
-    var resultData = $("#imiForm").serialize();
-    var result = validateotp();
-    if (result) {
-      $.ajax({
-        cache: false,
-        type: "POST",
-        url: "validateotp.php",
-        data: resultData,
-        success: function (data) {
-          // Move to the next step
-          if (data == "success") {
-            $("#imiForm").submit();
-          } else {
-            $("#emailwrong").removeClass("d-none");
-            $("#mobwrong").removeClass("d-none");
-            $("#spnemailverfy").text(
-              "Please enter valid otp for mobile and email"
-            );
-          }
-        },
-        error: function (xhr, status, error) {
-          // alert("An error occurred. Please try again.");
-        },
-      });
-    }
-  });
-});
 
 function validateURL(link) {
   // Regular expression to match a URL starting with https://, http://, www., and ending with .com followed by optional characters
