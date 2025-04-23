@@ -56,7 +56,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mobileno = htmlspecialchars($_POST['mobileno']);
     $city     = htmlspecialchars($_POST['city']);
 
-    $subject = "New Form Submission";    
+    $subject = "New Enrollment Form Submission";
+    if($city == "") {
+        $subject = "New Brochure Download";
+    }
     $message = "
     <html>
     <head>
@@ -73,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Send email
     if (sendMailSMTP($subject, $message)) {
-        echo "Success";
+        echo "documents/imik-blockchain-brochure.pdf";
     } else {
         http_response_code(500);
         echo "Failed";

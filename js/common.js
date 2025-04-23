@@ -68,7 +68,7 @@ $(document).ready(function () {
         type: "POST",
         url: "main.php",
         data: formParameters,
-        success: function (response) {
+        success: function () {
           Swal.fire({
             title: "Enrollment request received!",
             text: "We have received your request. Our team will get back to you soon.",
@@ -88,6 +88,51 @@ $(document).ready(function () {
             showCloseButton: true
           });
           $("#submitForm").attr("disabled", false);
+        },
+      });
+    }
+  });
+  
+  $("#downloadForm").click(function (e) {
+    e.preventDefault();
+    var isValid = validateExpBrochure();
+    var formParameters = $("#brochureForm").serialize();
+
+    if (isValid) {
+      $("#downloadForm").attr("disabled", true);
+      $.ajax({
+        cache: false,
+        type: "POST",
+        url: "main.php",
+        data: formParameters,
+        success: function (response) {
+          console.log(response);
+
+          fetch(response)
+          .then(response => response.blob())
+          .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'imik-swaransh-blockchain-course-brochure.pdf';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+          });
+          $("#brochureModal").modal("toggle");
+          $("#brochureForm").trigger("reset");
+          $("#downloadForm").attr("disabled", false);
+        },
+        error: function () {
+          Swal.fire({
+            title: "Error occurred!",
+            text: "An error occurred while processing your request. Please try again.",
+            icon: "error",
+            showConfirmButton: false,
+            showCloseButton: true
+          });
+          $("#downloadForm").attr("disabled", false);
         },
       });
     }
@@ -185,162 +230,6 @@ function ValidateEmail(email) {
   return isValid;
 }
 
-function ValidateAddress(address) {
-  // Regular expression to allow only letters, numbers, spaces, commas, periods, hyphens, and pound signs in the address
-  var regex = /^[a-zA-Z0-9\s\.,#-]+$/;
-  return regex.test(address);
-}
-
-function validateotpMobile() {
-  var IsValid = true;
-  var mobileotp1 = document.getElementById("mobile-otp1").value;
-  if (mobileotp1.trim() == "") {
-    $("#spnMobile").text("Please enter otp");
-    IsValid = false;
-  } else {
-    $("#spnMobile").text("");
-  }
-
-  var mobileotp2 = document.getElementById("mobile-otp2").value;
-  if (mobileotp2.trim() == "") {
-    $("#spnMobile").text("Please enter otp");
-    IsValid = false;
-  } else {
-    $("#spnMobile").text("");
-  }
-
-  var mobileotp3 = document.getElementById("mobile-otp3").value;
-  if (mobileotp3.trim() == "") {
-    $("#spnMobile").text("Please enter otp");
-    IsValid = false;
-  } else {
-    $("#spnMobile").text("");
-  }
-
-  var mobileotp4 = document.getElementById("mobile-otp4").value;
-  if (mobileotp4.trim() == "") {
-    $("#spnMobile").text("Please enter otp");
-    IsValid = false;
-  } else {
-    $("#spnMobile").text("");
-  }
-
-  if (IsValid) {
-    return true;
-  }
-}
-
-function validateotpEmail() {
-  var IsValid = true;
-
-  var emailotp1 = document.getElementById("email-otp1").value;
-  if (emailotp1.trim() == "") {
-    $("#spnemailverfy").text("Please enter otp");
-    IsValid = false;
-  } else {
-    $("#spnemailverfy").text("");
-  }
-
-  var emailotp2 = document.getElementById("email-otp2").value;
-  if (emailotp2.trim() == "") {
-    $("#spnemailverfy").text("Please enter otp");
-    IsValid = false;
-  } else {
-    $("#spnemailverfy").text("");
-  }
-
-  var emailotp3 = document.getElementById("email-otp3").value;
-  if (emailotp3.trim() == "") {
-    $("#spnemailverfy").text("Please enter otp");
-    IsValid = false;
-  } else {
-    $("#spnemailverfy").text("");
-  }
-
-  var emailotp4 = document.getElementById("email-otp4").value;
-  if (emailotp4.trim() == "") {
-    $("#spnemailverfy").text("Please enter otp");
-    IsValid = false;
-  } else {
-    $("#spnemailverfy").text("");
-  }
-
-  if (IsValid) {
-    return true;
-  }
-}
-
-function validateotp() {
-  var IsValid = true;
-  var mobileotp1 = document.getElementById("mobile-otp1").value;
-  if (mobileotp1.trim() == "") {
-    $("#spnMobile").text("Please enter otp");
-    IsValid = false;
-  } else {
-    $("#spnMobile").text("");
-  }
-
-  var mobileotp2 = document.getElementById("mobile-otp2").value;
-  if (mobileotp2.trim() == "") {
-    $("#spnMobile").text("Please enter otp");
-    IsValid = false;
-  } else {
-    $("#spnMobile").text("");
-  }
-
-  var mobileotp3 = document.getElementById("mobile-otp3").value;
-  if (mobileotp3.trim() == "") {
-    $("#spnMobile").text("Please enter otp");
-    IsValid = false;
-  } else {
-    $("#spnMobile").text("");
-  }
-
-  var mobileotp4 = document.getElementById("mobile-otp4").value;
-  if (mobileotp4.trim() == "") {
-    $("#spnMobile").text("Please enter otp");
-    IsValid = false;
-  } else {
-    $("#spnMobile").text("");
-  }
-
-  var emailotp1 = document.getElementById("email-otp1").value;
-  if (emailotp1.trim() == "") {
-    $("#spnemailverfy").text("Please enter otp");
-    IsValid = false;
-  } else {
-    $("#spnemailverfy").text("");
-  }
-
-  var emailotp2 = document.getElementById("email-otp2").value;
-  if (emailotp2.trim() == "") {
-    $("#spnemailverfy").text("Please enter otp");
-    IsValid = false;
-  } else {
-    $("#spnemailverfy").text("");
-  }
-
-  var emailotp3 = document.getElementById("email-otp3").value;
-  if (emailotp3.trim() == "") {
-    $("#spnemailverfy").text("Please enter otp");
-    IsValid = false;
-  } else {
-    $("#spnemailverfy").text("");
-  }
-
-  var emailotp4 = document.getElementById("email-otp4").value;
-  if (emailotp4.trim() == "") {
-    $("#spnemailverfy").text("Please enter otp");
-    IsValid = false;
-  } else {
-    $("#spnemailverfy").text("");
-  }
-
-  if (IsValid) {
-    return true;
-  }
-}
-
 function validateExp() {
   var IsValid = true;
 
@@ -422,6 +311,73 @@ function validateExp() {
     IsValid = false;
   } else {
     $("#spnCity").text("");
+  }
+
+  if (IsValid) {
+    return true;
+  }
+}
+
+function validateExpBrochure() {
+  var IsValid = true;
+
+  var name = document.getElementById("txtNameBr").value;
+  if (name.trim() == "" || name.trim() == "Please enter your name") {
+    $("#spnNameBr").text("Please enter your name");
+    IsValid = false;
+  } else if (
+    name.trim() != "" &&
+    name.trim() != "Please enter your name" &&
+    ischar(name.trim()) == false
+  ) {
+    $("#spnNameBr").text("Please enter valid name");
+    IsValid = false;
+  } else if (!chkSpecialchar(name.trim())) {
+    $("#spnNameBr").text("Please enter valid name");
+    IsValid = false;
+  } else if (!onlyLettersAndNumbers(name.trim())) {
+    $("#spnNameBr").text("Please enter valid name in english");
+    IsValid = false;
+  } else {
+    $("#spnNameBr").text("");
+  }
+
+  //Mobile Number
+  var phoneNumber = document.getElementById("txtPhoneBr").value;
+  if (phoneNumber == "" || phoneNumber == "Mobile Number") {
+    $("#spnMobileNumberBr").text("Please enter your mobile number");
+    IsValid = false;
+  } else if (isInteger(phoneNumber) == false) {
+    $("#spnMobileNumberBr").text("Please enter numbers only");
+    IsValid = false;
+  } else if (phoneNumber.length != 10) {
+    $("#spnMobileNumberBr").text("Your Mobile Number must contain 10 digits");
+    IsValid = false;
+  } else if (
+    phoneNumber == "0000000000" ||
+    phoneNumber == "6666666666" ||
+    phoneNumber == "7777777777" ||
+    phoneNumber == "8888888888" ||
+    phoneNumber == "9999999999" ||
+    phoneNumber == "9876543210" ||
+    phoneNumber == "0123456789"
+  ) {
+    $("#spnMobileNumberBr").text("Please enter valid Mobile Number");
+    IsValid = false;
+  } else if (/^[6-9][0-9]{9}$/.test(phoneNumber) == false) {
+    $("#spnMobileNumberBr").text("Please enter valid Mobile Number");
+    IsValid = false;
+  } else {
+    $("#spnMobileNumberBr").text("");
+  }
+
+  var email = document.getElementById("txtEmailBr").value;
+  if (email.trim() == "" || email.trim() == "Email Address") {
+    $("#spnEmailBr").text("Please enter your email address");
+  } else if (ValidateEmail(email.trim()) == false) {
+    $("#spnEmailBr").text("Please enter valid email address");
+  } else {
+    $("#spnEmailBr").text("");
   }
 
   if (IsValid) {

@@ -810,16 +810,16 @@
               type="button"
               class="btn_submit"
               data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+              data-bs-target="#brochureModal"
               >Download Brochure</a
             >
 
             <!-- Modal -->
             <div
               class="modal fade"
-              id="exampleModal"
+              id="brochureModal"
               tabindex="-1"
-              aria-labelledby="exampleModalLabel"
+              aria-labelledby="brochureModalLabel"
               aria-hidden="true"
             >
               <div
@@ -827,8 +827,8 @@
               >
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">
-                      Brochure Form
+                    <h1 class="modal-title fs-5" id="brochureModalLabel">
+                      Download Brochure
                     </h1>
                     <button
                       type="button"
@@ -838,22 +838,21 @@
                     ></button>
                   </div>
 
-                  <div class="brochure-modal-content">
+                  <form class="brochure-modal-content" id="brochureForm" method="POST" action="">
                     <div class="form-group">
                       <label>
                         <input
                           type="text"
                           maxlength="50"
                           name="name"
-                          onchange="getValidationMessageName();"
                           onkeydown="return isAlphabetKey(event, 'name')"
-                          id="txtName"
+                          id="txtNameBr"
                           class="form-control"
-                          required=""
                           placeholder="Name"
+                          required
                         />
                       </label>
-                      <small id="spnName" class="text-danger"></small>
+                      <small id="spnNameBr" class="text-danger"></small>
                     </div>
                     <div class="form-group">
                       <label>
@@ -862,12 +861,13 @@
                           class="form-control"
                           pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
                           name="email"
-                          id="txtEmail"
+                          id="txtEmailBr"
                           maxlength="50"
                           placeholder="Email"
+                          required
                         />
                       </label>
-                      <small id="spnEmail" class="text-danger"></small>
+                      <small id="spnEmailBr" class="text-danger"></small>
                     </div>
                     <div class="form-group">
                       <label>
@@ -875,26 +875,27 @@
                           type="text"
                           class="form-control"
                           name="mobileno"
-                          id="txtPhone"
+                          id="txtPhoneBr"
                           maxlength="10"
                           onkeydown="return isNumberKey(event,'number')"
-                          required=""
                           placeholder="Mobile No."
+                          required
                         />
                       </label>
-                      <small id="spnMobileNumber" class="text-danger"></small>
+                      <small id="spnMobileNumberBr" class="text-danger"></small>
                     </div>
+                    <input type="hidden" name="city" value="" />
 
                     <div class="text-center mt-4">
                       <button
-                        id="send"
-                        name="send"
+                        id="downloadForm"
+                        name="downloadForm"
                         class="btn btn-default btn_submit btn-md w-100"
                       >
-                        Submit Form
+                        Submit and Download
                       </button>
                     </div>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>
