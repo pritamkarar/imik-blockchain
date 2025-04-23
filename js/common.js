@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
   $(".counter").countUp();
-  
+
   $(".key-highlights-carousel").owlCarousel({
     loop: true,
     margin: 15,
@@ -76,6 +76,7 @@ $(document).ready(function () {
             showConfirmButton: false,
             showCloseButton: true
           });
+          $("#imiForm").trigger("reset");
           $("#submitForm").attr("disabled", false);
         },
         error: function () {
