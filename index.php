@@ -2323,9 +2323,7 @@
           <div class="col-lg-6 text-left-center">
             <div class="footer-text text-center">
               &copy;
-              <script>
-                document.write(new Date().getFullYear());
-              </script>
+              <?php echo date("Y"); ?>
               Swaransh IT Solutions - All Rights Reserved
             </div>
           </div>
