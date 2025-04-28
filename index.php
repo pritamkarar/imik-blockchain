@@ -330,17 +330,17 @@
                                       class="text-danger"
                                     ></small>
                                   </div>
-                                  <div class="text-center mt-3">
+                                  <div class="position-relative text-center mt-3">
                                     <button
                                       id="submitForm"
                                       name="submitForm"
                                       class="btn btn-default btn_submit btn-md w-100"
                                     >
                                       Enroll Now
+                                      <span class="loader enroll-loader"></span>
                                     </button>
                                   </div>
                                 </div>
-                                <div class="loading d-none"></div>
                                 <div class="clearfix"></div>
                               </div>
                             </form>

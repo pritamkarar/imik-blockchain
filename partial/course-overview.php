@@ -113,13 +113,14 @@
                 </div>
                 <input type="hidden" name="city" value="" />
 
-                <div class="text-center mt-4">
+                <div class="position-relative text-center mt-4">
                     <button
                     id="downloadForm"
                     name="downloadForm"
                     class="btn btn-default btn_submit btn-md w-100"
                     >
-                    Submit and Download
+                        Submit and Download
+                        <span class="loader enroll-loader"></span>
                     </button>
                 </div>
                 </form>
