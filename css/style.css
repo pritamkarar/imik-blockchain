@@ -1563,3 +1563,18 @@ button.btn:disabled {
     background-color: #efefef;
 }
 
+
+
+.enrollloader{
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    padding: 3px;
+}
+
+button.btn:disabled .enrollloader{
+    display: block;
+}
