@@ -71,7 +71,7 @@ $(document).ready(function () {
         success: function () {
           Swal.fire({
             title: "Enrollment request received!",
-            text: "We have received your request. Our team will get back to you soon.",
+            text: "Thank you for your interest in our course. Check your email for further details.",
             icon: "success",
             showConfirmButton: false,
             showCloseButton: true
@@ -103,11 +103,9 @@ $(document).ready(function () {
       $.ajax({
         cache: false,
         type: "POST",
-        url: "main.php",
+        url: "download.php",
         data: formParameters,
         success: function (response) {
-          console.log(response);
-
           fetch(response)
           .then(response => response.blob())
           .then(blob => {

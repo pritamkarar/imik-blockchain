@@ -3,7 +3,6 @@ require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/SMTP.php';
 require 'PHPMailer/Exception.php';
 
-// Simple .env loader
 function loadEnv($path = '.env') {
     if (!file_exists($path)) return;
     $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -19,7 +18,7 @@ loadEnv(); // Load the environment variables
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-function sendMailSMTP($subject, $htmlBody, $plainTextBody = '', $toEmail = null) {
+function sendMailSMTP($subject, $htmlBody, $plainTextBody = '') {
   $mail = new PHPMailer(true);
 
   try {
@@ -31,7 +30,7 @@ function sendMailSMTP($subject, $htmlBody, $plainTextBody = '', $toEmail = null)
       $mail->Password   = $_ENV['SMTP_PASSWORD'];
       $mail->SMTPSecure = $_ENV['SMTP_ENCRYPTION'];
       $mail->Port       = $_ENV['SMTP_PORT'];
-      $toEmail          = $toEmail ?: $_ENV['TO_EMAIL'];
+      $toEmail          = $_ENV['TO_EMAIL'];
       
       $mail->setFrom($_ENV['FROM_EMAIL'], $_ENV['FROM_NAME']);
       $mail->addAddress($toEmail);
@@ -52,59 +51,29 @@ function sendMailSMTP($subject, $htmlBody, $plainTextBody = '', $toEmail = null)
   }
 }
 
-function sendAdminEmail($name, $email, $mobileno, $city, $type) {
-    $subject = "New enrollment form submission - Blockchain Certification Program";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name     = htmlspecialchars($_POST['name']);
+    $email    = htmlspecialchars($_POST['email']);
+    $mobileno = htmlspecialchars($_POST['mobileno']);
+
+    $subject = "New brochure download request - Blockchain Certification Program";
     $message = "
     <html>
     <head>
       <title>Form Submission</title>
     </head>
     <body>
-      <h2>New enrollment form submission</h2>
+      <h2>New brochure download request</h2>
       <p><strong>Name:</strong> $name</p>
       <p><strong>Email:</strong> $email</p>
       <p><strong>Mobile No:</strong> $mobileno</p>
-      <p><strong>City:</strong> $city</p>
-      <p><strong>Type:</strong> $type</p>
     </body>
     </html>
     ";
 
-    return sendMailSMTP($subject, $message);
-}
-
-function sendStudentEmail($name, $email, $type) {
-    $subject = "Enrollment submission - Certificate programme in Blockchain (IMIK & Swaransh IT Solutions)";
-    $template = file_get_contents('documents/mail-template.html');
-
-    $variables = [
-        '{{studentName}}' => $name,
-        '{{paymentLink}}' => $type == "individual" ? $_ENV['PAYMENT_LINK_INDIVIDUAL'] : $_ENV['PAYMENT_LINK_GROUP'],
-    ];
-
-    foreach ($variables as $key => $value) {
-        $template = str_replace($key, $value, $template);
-    }
-
-    return sendMailSMTP($subject, $template, '', $email);
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name     = htmlspecialchars($_POST['name']);
-    $email    = htmlspecialchars($_POST['email']);
-    $mobileno = htmlspecialchars($_POST['mobileno']);
-    $city     = htmlspecialchars($_POST['city']);
-    $type     = htmlspecialchars($_POST['type']);
-
-    $mailSent = false;
-    
-    $mailSent = sendAdminEmail($name, $email, $mobileno, $city, $type);
-    if($mailSent) {
-        $mailSent = sendStudentEmail($name, $email, $type);
-    }
-
-    if ($mailSent) {
-        echo "Success";
+    // Send email
+    if (sendMailSMTP($subject, $message)) {
+        echo "documents/imik-blockchain-brochure.pdf";
     } else {
         http_response_code(500);
         echo "Failed";
