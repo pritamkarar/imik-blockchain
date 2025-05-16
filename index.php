@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>IMIK Blockchain Certification Course</title>
+    <title>Blockchain Certification Program | IMI Kolkata & Swaransh IT Solutions</title>
 
     <?php include 'metatags.php'; ?>
 
@@ -166,6 +166,17 @@
           }
         }
     </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J9MX8919X6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-J9MX8919X6');
+    </script>
+
 
     <!-- Fallback for Non-Critical CSS for Older Browsers -->
     <noscript>
@@ -439,7 +450,7 @@
                     <img
                       src="images/provisional-offer.webp"
                       class="img-fluid"
-                      alt="Bridging Theory With Practice"
+                      alt="Provisional Offer"
                     />
                   </div>
                 </div>

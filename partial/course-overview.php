@@ -54,9 +54,9 @@
             >
             <div class="modal-content">
                 <div class="modal-header">
-                <h1 class="modal-title fs-5" id="brochureModalLabel">
+                <h2 class="modal-title fs-5" id="brochureModalLabel">
                     Download Brochure
-                </h1>
+                </h2>
                 <button
                     type="button"
                     class="btn-close"

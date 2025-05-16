@@ -1,3 +1,2 @@
-<meta name="title" content="IMIK Blockchain Certification Course" />
-<meta name="description" content="IMIK Blockchain Certification Course" />
-<meta name="keywords" content="IMIK Blockchain Certification Course" />
+<meta name="description" content="Learn blockchain fundamentals, smart contracts, DApps, DeFi, and enterprise applications with hands-on capstone projects and a paid internship. 100-hour certification in 6 months." />
+<meta name="keywords" content="blockchain certification, blockchain course India, IMI blockchain, smart contract training, DeFi course, Hyperledger training, Ethereum training, blockchain internship" />
